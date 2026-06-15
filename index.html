@@ -5,20 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kasih Ibu Latansa — Hero</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
 
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --teal-bg:    #c8e9ed;
-  --teal-dark:  #3a9caa;
-  --orange:     #f07a30;
-  --green-btn:  #4a9e7f;
-  --green-dark: #3a8a6c;
-  --white:      #ffffff;
-  --dark:       #1a2e35;
-  --nav-h:      76px;
+  --teal-bg:   #ceeaed;
+  --teal-dark: #3a9caa;
+  --orange:    #f07a30;
+  --green:     #4a9e7a;
+  --dark:      #1a2e35;
+  --nav-h:     80px;
 }
 
 html, body { overflow-x: hidden; }
@@ -33,145 +31,133 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 48px;
+  padding: 0 52px;
   z-index: 200;
   transition: box-shadow .3s;
 }
-nav.scrolled { box-shadow: 0 2px 16px rgba(0,0,0,.1); }
+nav.scrolled { box-shadow: 0 2px 16px rgba(0,0,0,.08); }
 
-/* Batik SVG corners */
-.batik-wrap {
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: var(--nav-h);
-  pointer-events: none;
-  overflow: hidden;
-}
-.batik-wrap svg {
+/* Batik corners */
+.batik-corner {
   position: absolute;
   top: 0;
-  width: 120px; height: 120px;
+  width: 110px; height: 110px;
+  pointer-events: none;
+  opacity: .9;
 }
-.batik-wrap svg.left  { left: 0; }
-.batik-wrap svg.right { right: 0; transform: scaleX(-1); }
+.batik-corner.left  { left: 0; }
+.batik-corner.right { right: 0; transform: scaleX(-1); }
 
 /* Logo */
 .logo {
   display: flex; align-items: center; gap: 12px;
-  text-decoration: none; z-index: 1;
+  text-decoration: none; z-index: 1; flex-shrink: 0;
 }
 .logo-circle {
   width: 52px; height: 52px;
   background: var(--orange);
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  font-size: 24px;
-  flex-shrink: 0;
+  font-size: 26px; flex-shrink: 0;
   box-shadow: 0 3px 12px rgba(240,122,48,.35);
 }
-.logo-text { line-height: 1.15; }
-.logo-text strong { display: block; font-size: 17px; font-weight: 800; color: var(--dark); letter-spacing: .2px; }
+.logo-text strong { display: block; font-size: 16px; font-weight: 800; color: var(--dark); }
 .logo-text span   { display: block; font-size: 13px; font-weight: 600; color: var(--teal-dark); }
 
-/* Nav links */
-.nav-links { display: flex; align-items: center; gap: 36px; list-style: none; z-index: 1; }
+/* Desktop nav links */
+.nav-links {
+  display: flex; align-items: center; gap: 36px;
+  list-style: none; z-index: 1;
+}
 .nav-links a {
-  text-decoration: none;
-  font-size: 15px; font-weight: 600;
-  color: var(--dark);
-  position: relative;
-  transition: color .2s;
+  text-decoration: none; font-size: 15px; font-weight: 600;
+  color: var(--dark); position: relative; transition: color .2s;
 }
 .nav-links a::after {
   content: '';
-  position: absolute;
-  bottom: -4px; left: 0; right: 0;
+  position: absolute; bottom: -4px; left: 0; right: 0;
   height: 2px; background: var(--teal-dark);
-  transform: scaleX(0); transform-origin: left;
-  transition: transform .25s;
+  transform: scaleX(0); transform-origin: left; transition: transform .25s;
 }
 .nav-links a.active { color: var(--teal-dark); }
 .nav-links a.active::after,
 .nav-links a:hover::after { transform: scaleX(1); }
 .nav-links a:hover { color: var(--teal-dark); }
 
-.btn-donasi-nav {
-  background: var(--orange);
-  color: #fff !important;
-  padding: 11px 28px;
-  border-radius: 30px;
+.btn-nav-donasi {
+  background: var(--orange); color: #fff !important;
+  padding: 11px 30px; border-radius: 30px;
   font-weight: 700 !important;
-  font-size: 15px !important;
   box-shadow: 0 4px 14px rgba(240,122,48,.4);
-  transition: background .2s, transform .2s, box-shadow .2s;
+  transition: background .2s, transform .15s;
 }
-.btn-donasi-nav::after { display: none !important; }
-.btn-donasi-nav:hover { background: #d9630f !important; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(240,122,48,.45); }
+.btn-nav-donasi::after { display: none !important; }
+.btn-nav-donasi:hover { background: #d9630f !important; transform: translateY(-1px); }
 
 /* Hamburger */
 .hamburger {
   display: none; flex-direction: column; gap: 5px;
-  background: none; border: none; cursor: pointer;
-  padding: 8px; z-index: 1;
+  background: none; border: none; cursor: pointer; padding: 8px; z-index: 1;
 }
 .hamburger span {
   display: block; width: 26px; height: 2.5px;
-  background: var(--dark); border-radius: 2px;
-  transition: all .3s;
+  background: var(--dark); border-radius: 2px; transition: all .3s;
 }
 .hamburger.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
 .hamburger.open span:nth-child(2) { opacity: 0; }
 .hamburger.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
 
 /* Mobile drawer */
-.mobile-menu {
+.mob-drawer {
   position: fixed;
   top: var(--nav-h); left: 0; right: 0;
   background: #fff;
-  padding: 8px 24px 24px;
+  padding: 4px 24px 24px;
   display: flex; flex-direction: column;
   transform: translateY(-8px); opacity: 0; pointer-events: none;
   transition: all .28s ease;
   z-index: 190;
   box-shadow: 0 8px 32px rgba(0,0,0,.12);
 }
-.mobile-menu.open { transform: translateY(0); opacity: 1; pointer-events: all; }
-.mobile-menu a {
+.mob-drawer.open { transform: translateY(0); opacity: 1; pointer-events: all; }
+.mob-drawer a {
   text-decoration: none; font-weight: 600; font-size: 16px;
   color: var(--dark); padding: 13px 0;
-  border-bottom: 1px solid #f0f0f0;
-  transition: color .2s, padding-left .2s;
+  border-bottom: 1px solid #f0f0f0; transition: color .2s;
 }
-.mobile-menu a:last-child { border-bottom: none; }
-.mobile-menu a:hover { color: var(--teal-dark); padding-left: 6px; }
-.mobile-menu .mob-donasi {
-  margin-top: 8px; background: var(--orange);
+.mob-drawer a:last-child { border-bottom: none; }
+.mob-drawer a:hover { color: var(--teal-dark); }
+.mob-drawer .mob-donasi {
+  margin-top: 10px; background: var(--orange);
   color: #fff !important; text-align: center;
   border-radius: 30px; padding: 14px 0 !important;
   border-bottom: none !important; font-weight: 700 !important;
 }
 
-/* ══════════ HERO SECTION ══════════ */
+
+/* ══════════ HERO (DESKTOP) ══════════
+   Layout: teal padding → rounded image card with text overlay → pillars bar
+   Matches mockup: hero image has left/right margin showing teal bg sides
+*/
 #hero {
   margin-top: var(--nav-h);
-  position: relative;
 }
 
-/* Slider — full width, no padding on mobile */
+/* ── Desktop hero ── */
+.hero-desktop {
+  padding: 0 40px; /* teal sides visible */
+}
+
 .hero-slider {
   position: relative;
-  width: 100%;
-  /* Desktop: inside the teal area with small horizontal inset */
-  margin: 0 40px;
-  width: calc(100% - 80px);
-  border-radius: 18px;
+  border-radius: 20px;
   overflow: hidden;
-  height: calc(100vh - var(--nav-h) - 96px); /* leave room for pillars */
-  min-height: 440px;
-  max-height: 600px;
+  /* Height: viewport minus nav, minus pillar bar (82px) */
+  height: calc(100vh - var(--nav-h) - 82px);
+  min-height: 400px;
+  max-height: 540px;
 }
 
-/* Slides */
 .slide {
   position: absolute; inset: 0;
   background-size: cover;
@@ -181,214 +167,291 @@ nav.scrolled { box-shadow: 0 2px 16px rgba(0,0,0,.1); }
 }
 .slide.active { opacity: 1; }
 
-/* Overlay — strong left gradient so text is always readable */
+/* Gradient: strong left, fades right */
 .slide::after {
   content: '';
   position: absolute; inset: 0;
   background: linear-gradient(
-    100deg,
-    rgba(8,25,30,.80) 0%,
-    rgba(8,25,30,.55) 45%,
-    rgba(8,25,30,.10) 100%
+    98deg,
+    rgba(5,20,25,.80) 0%,
+    rgba(5,20,25,.60) 38%,
+    rgba(5,20,25,.18) 65%,
+    transparent 100%
   );
 }
 
-/* Hero text block */
+/* Text overlay — left-aligned, vertically centered */
 .hero-content {
-  position: absolute;
-  inset: 0;
+  position: absolute; inset: 0;
   z-index: 5;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 48px 52px;
-  max-width: 600px;
+  padding: 44px 52px;
+  max-width: 560px;
   color: #fff;
 }
 
 .hero-badge {
   display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(255,255,255,.14);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,.22);
+  background: rgba(255,255,255,.16);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,.25);
   border-radius: 30px;
-  padding: 7px 18px;
-  font-size: 13px; font-weight: 700;
-  letter-spacing: .4px;
-  margin-bottom: 24px;
-  width: fit-content;
+  padding: 6px 16px;
+  font-size: 13px; font-weight: 600;
+  margin-bottom: 20px; width: fit-content;
 }
 
+/* Title: same weight/style as mockup — bold sans, ~40–48px desktop, 3 lines */
 .hero-title {
-  font-family: 'Barlow Condensed', 'Montserrat', sans-serif;
-  font-size: clamp(36px, 4.5vw, 64px);
-  font-weight: 900;
-  line-height: 1.0;
+  font-size: clamp(32px, 3.6vw, 50px);
+  font-weight: 800;
+  line-height: 1.12;
   text-transform: uppercase;
-  letter-spacing: .5px;
-  margin-bottom: 18px;
+  letter-spacing: .3px;
+  margin-bottom: 16px;
 }
-.hero-title .accent { color: #f5c842; }
+.hero-title .accent { color: #f5c535; }
 
-.hero-subtitle {
-  font-size: clamp(13px, 1.3vw, 16px);
+.hero-sub {
+  font-size: clamp(13px, 1.2vw, 15px);
   font-weight: 500;
   line-height: 1.65;
   color: rgba(255,255,255,.85);
-  margin-bottom: 34px;
-  max-width: 420px;
+  max-width: 400px;
+  margin-bottom: 28px;
 }
 
+/* Buttons: horizontal, pill shape */
 .hero-btns {
-  display: flex; gap: 14px; flex-wrap: wrap;
+  display: flex; gap: 12px; flex-wrap: nowrap;
 }
 
 .btn {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 13px 28px;
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 12px 26px;
   border-radius: 40px;
   font-family: 'Montserrat', sans-serif;
   font-size: 14px; font-weight: 700;
-  cursor: pointer; border: none;
-  text-decoration: none;
-  transition: transform .2s, box-shadow .2s, background .2s;
+  cursor: pointer; border: none; text-decoration: none;
+  transition: transform .18s, box-shadow .18s, background .18s;
   white-space: nowrap;
 }
 .btn:hover { transform: translateY(-2px); }
 
 .btn-green {
-  background: var(--green-btn);
-  color: #fff;
-  box-shadow: 0 5px 18px rgba(74,158,127,.4);
+  background: var(--green); color: #fff;
+  box-shadow: 0 4px 16px rgba(74,158,122,.4);
 }
-.btn-green:hover { background: var(--green-dark); box-shadow: 0 7px 22px rgba(74,158,127,.5); }
+.btn-green:hover { background: #3d8a6a; }
 
 .btn-ghost {
-  background: transparent;
-  color: #fff;
-  border: 2px solid rgba(255,255,255,.65);
+  background: transparent; color: #fff;
+  border: 2px solid rgba(255,255,255,.7);
 }
 .btn-ghost:hover { background: rgba(255,255,255,.12); border-color: #fff; }
 
 /* Slide dots */
 .slider-dots {
-  position: absolute;
-  bottom: 18px; right: 22px;
+  position: absolute; bottom: 18px; right: 20px;
   display: flex; gap: 8px; z-index: 10;
 }
 .dot {
-  height: 8px; width: 8px;
-  border-radius: 4px;
-  background: rgba(255,255,255,.45);
-  cursor: pointer;
-  transition: background .3s, width .35s;
+  height: 8px; width: 8px; border-radius: 4px;
+  background: rgba(255,255,255,.4); cursor: pointer;
+  transition: background .3s, width .3s;
 }
-.dot.active { background: #fff; width: 24px; }
+.dot.active { background: #fff; width: 22px; }
 
-/* ══════════ PILLARS ══════════ */
+
+/* ── Pillars (desktop) ── */
 .pillars {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: grid; grid-template-columns: repeat(3, 1fr);
   background: #fff;
-  /* desktop: aligned with slider */
-  margin: 0 40px;
-  border-radius: 0 0 18px 18px;
+  margin: 0 40px; /* align with hero slider */
+  border-radius: 0 0 20px 20px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0,0,0,.07);
+  box-shadow: 0 8px 28px rgba(0,0,0,.07);
 }
-
 .pillar {
   display: flex; align-items: center; gap: 14px;
-  padding: 22px 32px;
-  font-weight: 700; font-size: 15px;
-  color: var(--dark);
-  position: relative;
-  transition: background .2s;
-  cursor: default;
+  padding: 20px 36px;
+  font-weight: 700; font-size: 15px; color: var(--dark);
+  position: relative; transition: background .18s;
 }
-.pillar:hover { background: #f5fbfc; }
+.pillar:hover { background: #f5fcfd; }
 .pillar:not(:last-child)::after {
   content: '';
-  position: absolute;
-  right: 0; top: 18%; bottom: 18%;
-  width: 1px; background: #e5e5e5;
+  position: absolute; right: 0; top: 20%; bottom: 20%;
+  width: 1px; background: #e8e8e8;
 }
-
 .pillar-icon {
-  width: 42px; height: 42px;
-  border-radius: 50%;
+  width: 42px; height: 42px; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   font-size: 20px; flex-shrink: 0;
 }
-.pi-orange { background: #feeee3; }
-.pi-teal   { background: #dff3f7; }
-.pi-yellow { background: #fff6d9; }
+.pi-o { background: #feeee3; }
+.pi-t { background: #dff3f7; }
+.pi-y { background: #fff6d9; }
+
+
+/* ══════════ MOBILE HERO ══════════
+   Mockup layout:
+   - Navbar full width
+   - Hero: text block TOP, photo fills middle/bottom, 2 buttons BELOW the photo
+   - Actually the mockup shows text+buttons as content OVER the photo
+     but photo is clearly visible (not covered by dark overlay)
+   - Pillars: white bar below
+   
+   Best approach: full-bleed slider, content stacked at top,
+   buttons near bottom — all over photo. Photo centered.
+   Max height ~80vh so pillars visible without scroll.
+*/
+.hero-mobile { display: none; }
+
 
 /* ══════════ RESPONSIVE ══════════ */
 @media (max-width: 900px) {
   nav { padding: 0 20px; }
   .nav-links { display: none; }
   .hamburger { display: flex; }
-  .batik-wrap svg { width: 80px; height: 80px; }
 }
 
-@media (max-width: 768px) {
-  :root { --nav-h: 68px; }
+@media (max-width: 767px) {
+  :root { --nav-h: 70px; }
 
-  /* Full bleed hero on mobile — no margin */
-  .hero-slider {
-    margin: 0;
+  .hero-desktop { display: none; }
+  .hero-mobile  { display: block; }
+
+  /* Full-bleed slider */
+  .hero-slider-mob {
+    position: relative;
     width: 100%;
-    border-radius: 0;
-    /* fill viewport height minus navbar */
-    height: calc(100svh - var(--nav-h));
-    max-height: none;
-    min-height: 500px;
+    /* tall enough to show the photo but leave pillars visible */
+    height: calc(100svh - var(--nav-h) - 72px);
+    min-height: 480px;
+    overflow: hidden;
+    /* no border radius — flush with edges */
   }
 
-  /* On mobile text is centered */
-  .hero-content {
-    padding: 32px 24px 140px; /* bottom pad so dots/buttons don't clash */
-    max-width: 100%;
+  .slide-mob {
+    position: absolute; inset: 0;
+    background-size: cover;
+    background-position: center top;
+    opacity: 0;
+    transition: opacity 1.1s ease;
+  }
+  .slide-mob.active { opacity: 1; }
+
+  /* Mobile overlay: top darker for text, bottom lighter for photo */
+  .slide-mob::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(5,20,25,.72) 0%,
+      rgba(5,20,25,.55) 35%,
+      rgba(5,20,25,.30) 60%,
+      rgba(5,20,25,.48) 100%
+    );
+  }
+
+  /* Mobile content: badge+title+subtitle top, buttons bottom */
+  .hero-content-mob {
+    position: absolute; inset: 0;
+    z-index: 5;
+    display: flex; flex-direction: column;
     align-items: center;
     text-align: center;
-    justify-content: flex-start;
-    padding-top: 36px;
+    color: #fff;
+    padding: 28px 24px 32px;
   }
 
-  .hero-badge { font-size: 12px; padding: 6px 14px; }
-  .hero-subtitle { max-width: 100%; }
-
-  .hero-btns {
-    flex-direction: column;
-    width: 100%;
-    max-width: 320px;
-  }
-  .btn { justify-content: center; width: 100%; }
-
-  /* On mobile slide::after — darker overall for contrast */
-  .slide::after {
-    background: rgba(8,25,30,.52);
+  .hero-badge-mob {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(255,255,255,.15);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,.25);
+    border-radius: 30px;
+    padding: 6px 16px;
+    font-size: 12.5px; font-weight: 600;
+    margin-bottom: 18px;
   }
 
-  /* Pillars also full bleed */
+  /* Title: bigger weight on mobile like mockup */
+  .hero-title-mob {
+    font-size: clamp(28px, 7.5vw, 38px);
+    font-weight: 800;
+    line-height: 1.12;
+    text-transform: uppercase;
+    letter-spacing: .2px;
+    margin-bottom: 14px;
+  }
+  .hero-title-mob .accent { color: #f5c535; }
+
+  .hero-sub-mob {
+    font-size: 13.5px; font-weight: 500;
+    line-height: 1.6; color: rgba(255,255,255,.87);
+    max-width: 320px; margin-bottom: 0;
+  }
+
+  /* Spacer pushes buttons to bottom */
+  .hero-spacer { flex: 1; }
+
+  /* Mobile buttons: stacked, full width */
+  .hero-btns-mob {
+    display: flex; flex-direction: column;
+    gap: 12px; width: 100%; max-width: 300px;
+  }
+
+  .btn-mob {
+    display: flex; align-items: center; justify-content: center;
+    padding: 15px 20px; border-radius: 40px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14.5px; font-weight: 700;
+    cursor: pointer; border: none; text-decoration: none;
+    transition: transform .18s;
+    white-space: nowrap;
+  }
+  .btn-mob:hover { transform: translateY(-2px); }
+  .btn-mob-green {
+    background: var(--green); color: #fff;
+    box-shadow: 0 4px 16px rgba(74,158,122,.4);
+  }
+  .btn-mob-ghost {
+    background: transparent; color: #fff;
+    border: 2px solid rgba(255,255,255,.75);
+  }
+
+  /* Mobile dots */
+  .slider-dots-mob {
+    position: absolute; bottom: 16px; right: 16px;
+    display: flex; gap: 8px; z-index: 10;
+  }
+  .dot-mob {
+    height: 7px; width: 7px; border-radius: 4px;
+    background: rgba(255,255,255,.4); cursor: pointer;
+    transition: background .3s, width .3s;
+  }
+  .dot-mob.active { background: #fff; width: 22px; }
+
+  /* Mobile pillars: full-bleed, no margin */
   .pillars {
     margin: 0;
     border-radius: 0;
   }
   .pillar {
-    flex-direction: column;
-    gap: 6px;
-    padding: 18px 8px;
-    font-size: 12px;
-    text-align: center;
+    flex-direction: column; gap: 6px;
+    padding: 16px 8px;
+    font-size: 12px; text-align: center;
     justify-content: center;
   }
-  .pillar-icon { width: 38px; height: 38px; font-size: 18px; }
+  .pillar-icon { width: 36px; height: 36px; font-size: 17px; }
 }
 
 @media (max-width: 380px) {
-  .hero-title { font-size: 32px; }
+  .hero-title-mob { font-size: 26px; }
 }
 </style>
 </head>
@@ -396,88 +459,81 @@ nav.scrolled { box-shadow: 0 2px 16px rgba(0,0,0,.1); }
 
 <!-- ══════════════ NAVBAR ══════════════ -->
 <nav id="navbar">
-  <!-- Batik decorative corners -->
-  <div class="batik-wrap">
-    <!-- LEFT corner -->
-    <svg class="left" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- floral background curves -->
-      <path d="M0 0 C40 0 80 40 80 80 L0 80 Z" fill="#f07a30" opacity=".07"/>
-      <path d="M0 0 C30 0 60 30 60 60 L0 60 Z" fill="#3a9caa" opacity=".09"/>
-      <!-- flower 1 -->
-      <g transform="translate(24,24)">
-        <circle r="5" fill="#f07a30" opacity=".55"/>
-        <ellipse rx="3" ry="6" fill="#f5a55e" opacity=".6" transform="rotate(0)   translate(0,-10)"/>
-        <ellipse rx="3" ry="6" fill="#f5a55e" opacity=".6" transform="rotate(45)  translate(0,-10)"/>
-        <ellipse rx="3" ry="6" fill="#f5a55e" opacity=".6" transform="rotate(90)  translate(0,-10)"/>
-        <ellipse rx="3" ry="6" fill="#f5a55e" opacity=".6" transform="rotate(135) translate(0,-10)"/>
-        <ellipse rx="3" ry="6" fill="#f5a55e" opacity=".6" transform="rotate(180) translate(0,-10)"/>
-        <ellipse rx="3" ry="6" fill="#f5a55e" opacity=".6" transform="rotate(225) translate(0,-10)"/>
-        <ellipse rx="3" ry="6" fill="#f5a55e" opacity=".6" transform="rotate(270) translate(0,-10)"/>
-        <ellipse rx="3" ry="6" fill="#f5a55e" opacity=".6" transform="rotate(315) translate(0,-10)"/>
-      </g>
-      <!-- flower 2 -->
-      <g transform="translate(60,18)">
-        <circle r="3" fill="#3a9caa" opacity=".5"/>
-        <ellipse rx="2" ry="4" fill="#6bbfc9" opacity=".55" transform="rotate(0)   translate(0,-7)"/>
-        <ellipse rx="2" ry="4" fill="#6bbfc9" opacity=".55" transform="rotate(60)  translate(0,-7)"/>
-        <ellipse rx="2" ry="4" fill="#6bbfc9" opacity=".55" transform="rotate(120) translate(0,-7)"/>
-        <ellipse rx="2" ry="4" fill="#6bbfc9" opacity=".55" transform="rotate(180) translate(0,-7)"/>
-        <ellipse rx="2" ry="4" fill="#6bbfc9" opacity=".55" transform="rotate(240) translate(0,-7)"/>
-        <ellipse rx="2" ry="4" fill="#6bbfc9" opacity=".55" transform="rotate(300) translate(0,-7)"/>
-      </g>
-      <!-- flower 3 -->
-      <g transform="translate(18,60)">
-        <circle r="3" fill="#3a9caa" opacity=".45"/>
-        <ellipse rx="2" ry="4" fill="#6bbfc9" opacity=".5" transform="rotate(0)   translate(0,-7)"/>
-        <ellipse rx="2" ry="4" fill="#6bbfc9" opacity=".5" transform="rotate(60)  translate(0,-7)"/>
-        <ellipse rx="2" ry="4" fill="#6bbfc9" opacity=".5" transform="rotate(120) translate(0,-7)"/>
-        <ellipse rx="2" ry="4" fill="#6bbfc9" opacity=".5" transform="rotate(180) translate(0,-7)"/>
-        <ellipse rx="2" ry="4" fill="#6bbfc9" opacity=".5" transform="rotate(240) translate(0,-7)"/>
-        <ellipse rx="2" ry="4" fill="#6bbfc9" opacity=".5" transform="rotate(300) translate(0,-7)"/>
-      </g>
-      <!-- dots -->
-      <circle cx="48" cy="8"  r="3" fill="#f07a30" opacity=".3"/>
-      <circle cx="8"  cy="48" r="3" fill="#f07a30" opacity=".3"/>
-      <circle cx="70" cy="40" r="2" fill="#3a9caa" opacity=".25"/>
-    </svg>
-    <!-- RIGHT corner (mirrored) -->
-    <svg class="right" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0 0 C40 0 80 40 80 80 L0 80 Z" fill="#f07a30" opacity=".07"/>
-      <path d="M0 0 C30 0 60 30 60 60 L0 60 Z" fill="#3a9caa" opacity=".09"/>
-      <g transform="translate(24,24)">
-        <circle r="5" fill="#f07a30" opacity=".55"/>
-        <ellipse rx="3" ry="6" fill="#f5a55e" opacity=".6" transform="rotate(0)   translate(0,-10)"/>
-        <ellipse rx="3" ry="6" fill="#f5a55e" opacity=".6" transform="rotate(45)  translate(0,-10)"/>
-        <ellipse rx="3" ry="6" fill="#f5a55e" opacity=".6" transform="rotate(90)  translate(0,-10)"/>
-        <ellipse rx="3" ry="6" fill="#f5a55e" opacity=".6" transform="rotate(135) translate(0,-10)"/>
-        <ellipse rx="3" ry="6" fill="#f5a55e" opacity=".6" transform="rotate(180) translate(0,-10)"/>
-        <ellipse rx="3" ry="6" fill="#f5a55e" opacity=".6" transform="rotate(225) translate(0,-10)"/>
-        <ellipse rx="3" ry="6" fill="#f5a55e" opacity=".6" transform="rotate(270) translate(0,-10)"/>
-        <ellipse rx="3" ry="6" fill="#f5a55e" opacity=".6" transform="rotate(315) translate(0,-10)"/>
-      </g>
-      <g transform="translate(60,18)">
-        <circle r="3" fill="#3a9caa" opacity=".5"/>
-        <ellipse rx="2" ry="4" fill="#6bbfc9" opacity=".55" transform="rotate(0)   translate(0,-7)"/>
-        <ellipse rx="2" ry="4" fill="#6bbfc9" opacity=".55" transform="rotate(60)  translate(0,-7)"/>
-        <ellipse rx="2" ry="4" fill="#6bbfc9" opacity=".55" transform="rotate(120) translate(0,-7)"/>
-        <ellipse rx="2" ry="4" fill="#6bbfc9" opacity=".55" transform="rotate(180) translate(0,-7)"/>
-        <ellipse rx="2" ry="4" fill="#6bbfc9" opacity=".55" transform="rotate(240) translate(0,-7)"/>
-        <ellipse rx="2" ry="4" fill="#6bbfc9" opacity=".55" transform="rotate(300) translate(0,-7)"/>
-      </g>
-      <g transform="translate(18,60)">
-        <circle r="3" fill="#3a9caa" opacity=".45"/>
-        <ellipse rx="2" ry="4" fill="#6bbfc9" opacity=".5" transform="rotate(0)   translate(0,-7)"/>
-        <ellipse rx="2" ry="4" fill="#6bbfc9" opacity=".5" transform="rotate(60)  translate(0,-7)"/>
-        <ellipse rx="2" ry="4" fill="#6bbfc9" opacity=".5" transform="rotate(120) translate(0,-7)"/>
-        <ellipse rx="2" ry="4" fill="#6bbfc9" opacity=".5" transform="rotate(180) translate(0,-7)"/>
-        <ellipse rx="2" ry="4" fill="#6bbfc9" opacity=".5" transform="rotate(240) translate(0,-7)"/>
-        <ellipse rx="2" ry="4" fill="#6bbfc9" opacity=".5" transform="rotate(300) translate(0,-7)"/>
-      </g>
-      <circle cx="48" cy="8"  r="3" fill="#f07a30" opacity=".3"/>
-      <circle cx="8"  cy="48" r="3" fill="#f07a30" opacity=".3"/>
-      <circle cx="70" cy="40" r="2" fill="#3a9caa" opacity=".25"/>
-    </svg>
-  </div>
+  <!-- Batik LEFT -->
+  <svg class="batik-corner left" viewBox="0 0 110 110" fill="none">
+    <path d="M0 0 C45 0 85 45 85 90 L0 90 Z" fill="#f07a30" opacity=".08"/>
+    <path d="M0 0 C30 0 65 30 65 70 L0 70 Z" fill="#3a9caa" opacity=".10"/>
+    <!-- big flower -->
+    <g transform="translate(26,26)">
+      <circle r="5.5" fill="#f07a30" opacity=".6"/>
+      <ellipse rx="3.5" ry="7" fill="#f5a55e" opacity=".55" transform="rotate(0)   translate(0,-12)"/>
+      <ellipse rx="3.5" ry="7" fill="#f5a55e" opacity=".55" transform="rotate(45)  translate(0,-12)"/>
+      <ellipse rx="3.5" ry="7" fill="#f5a55e" opacity=".55" transform="rotate(90)  translate(0,-12)"/>
+      <ellipse rx="3.5" ry="7" fill="#f5a55e" opacity=".55" transform="rotate(135) translate(0,-12)"/>
+      <ellipse rx="3.5" ry="7" fill="#f5a55e" opacity=".55" transform="rotate(180) translate(0,-12)"/>
+      <ellipse rx="3.5" ry="7" fill="#f5a55e" opacity=".55" transform="rotate(225) translate(0,-12)"/>
+      <ellipse rx="3.5" ry="7" fill="#f5a55e" opacity=".55" transform="rotate(270) translate(0,-12)"/>
+      <ellipse rx="3.5" ry="7" fill="#f5a55e" opacity=".55" transform="rotate(315) translate(0,-12)"/>
+    </g>
+    <!-- small flower top -->
+    <g transform="translate(62,16)">
+      <circle r="3" fill="#3a9caa" opacity=".55"/>
+      <ellipse rx="2" ry="4.5" fill="#6bbfc9" opacity=".5" transform="rotate(0)   translate(0,-7)"/>
+      <ellipse rx="2" ry="4.5" fill="#6bbfc9" opacity=".5" transform="rotate(60)  translate(0,-7)"/>
+      <ellipse rx="2" ry="4.5" fill="#6bbfc9" opacity=".5" transform="rotate(120) translate(0,-7)"/>
+      <ellipse rx="2" ry="4.5" fill="#6bbfc9" opacity=".5" transform="rotate(180) translate(0,-7)"/>
+      <ellipse rx="2" ry="4.5" fill="#6bbfc9" opacity=".5" transform="rotate(240) translate(0,-7)"/>
+      <ellipse rx="2" ry="4.5" fill="#6bbfc9" opacity=".5" transform="rotate(300) translate(0,-7)"/>
+    </g>
+    <!-- small flower left -->
+    <g transform="translate(16,62)">
+      <circle r="3" fill="#3a9caa" opacity=".5"/>
+      <ellipse rx="2" ry="4.5" fill="#6bbfc9" opacity=".45" transform="rotate(0)   translate(0,-7)"/>
+      <ellipse rx="2" ry="4.5" fill="#6bbfc9" opacity=".45" transform="rotate(60)  translate(0,-7)"/>
+      <ellipse rx="2" ry="4.5" fill="#6bbfc9" opacity=".45" transform="rotate(120) translate(0,-7)"/>
+      <ellipse rx="2" ry="4.5" fill="#6bbfc9" opacity=".45" transform="rotate(180) translate(0,-7)"/>
+      <ellipse rx="2" ry="4.5" fill="#6bbfc9" opacity=".45" transform="rotate(240) translate(0,-7)"/>
+      <ellipse rx="2" ry="4.5" fill="#6bbfc9" opacity=".45" transform="rotate(300) translate(0,-7)"/>
+    </g>
+    <circle cx="52" cy="8"  r="3.5" fill="#f07a30" opacity=".28"/>
+    <circle cx="8"  cy="52" r="3.5" fill="#f07a30" opacity=".28"/>
+  </svg>
+  <!-- Batik RIGHT (mirror) -->
+  <svg class="batik-corner right" viewBox="0 0 110 110" fill="none">
+    <path d="M0 0 C45 0 85 45 85 90 L0 90 Z" fill="#f07a30" opacity=".08"/>
+    <path d="M0 0 C30 0 65 30 65 70 L0 70 Z" fill="#3a9caa" opacity=".10"/>
+    <g transform="translate(26,26)">
+      <circle r="5.5" fill="#f07a30" opacity=".6"/>
+      <ellipse rx="3.5" ry="7" fill="#f5a55e" opacity=".55" transform="rotate(0)   translate(0,-12)"/>
+      <ellipse rx="3.5" ry="7" fill="#f5a55e" opacity=".55" transform="rotate(45)  translate(0,-12)"/>
+      <ellipse rx="3.5" ry="7" fill="#f5a55e" opacity=".55" transform="rotate(90)  translate(0,-12)"/>
+      <ellipse rx="3.5" ry="7" fill="#f5a55e" opacity=".55" transform="rotate(135) translate(0,-12)"/>
+      <ellipse rx="3.5" ry="7" fill="#f5a55e" opacity=".55" transform="rotate(180) translate(0,-12)"/>
+      <ellipse rx="3.5" ry="7" fill="#f5a55e" opacity=".55" transform="rotate(225) translate(0,-12)"/>
+      <ellipse rx="3.5" ry="7" fill="#f5a55e" opacity=".55" transform="rotate(270) translate(0,-12)"/>
+      <ellipse rx="3.5" ry="7" fill="#f5a55e" opacity=".55" transform="rotate(315) translate(0,-12)"/>
+    </g>
+    <g transform="translate(62,16)">
+      <circle r="3" fill="#3a9caa" opacity=".55"/>
+      <ellipse rx="2" ry="4.5" fill="#6bbfc9" opacity=".5" transform="rotate(0)   translate(0,-7)"/>
+      <ellipse rx="2" ry="4.5" fill="#6bbfc9" opacity=".5" transform="rotate(60)  translate(0,-7)"/>
+      <ellipse rx="2" ry="4.5" fill="#6bbfc9" opacity=".5" transform="rotate(120) translate(0,-7)"/>
+      <ellipse rx="2" ry="4.5" fill="#6bbfc9" opacity=".5" transform="rotate(180) translate(0,-7)"/>
+      <ellipse rx="2" ry="4.5" fill="#6bbfc9" opacity=".5" transform="rotate(240) translate(0,-7)"/>
+      <ellipse rx="2" ry="4.5" fill="#6bbfc9" opacity=".5" transform="rotate(300) translate(0,-7)"/>
+    </g>
+    <g transform="translate(16,62)">
+      <circle r="3" fill="#3a9caa" opacity=".5"/>
+      <ellipse rx="2" ry="4.5" fill="#6bbfc9" opacity=".45" transform="rotate(0)   translate(0,-7)"/>
+      <ellipse rx="2" ry="4.5" fill="#6bbfc9" opacity=".45" transform="rotate(60)  translate(0,-7)"/>
+      <ellipse rx="2" ry="4.5" fill="#6bbfc9" opacity=".45" transform="rotate(120) translate(0,-7)"/>
+      <ellipse rx="2" ry="4.5" fill="#6bbfc9" opacity=".45" transform="rotate(180) translate(0,-7)"/>
+      <ellipse rx="2" ry="4.5" fill="#6bbfc9" opacity=".45" transform="rotate(240) translate(0,-7)"/>
+      <ellipse rx="2" ry="4.5" fill="#6bbfc9" opacity=".45" transform="rotate(300) translate(0,-7)"/>
+    </g>
+    <circle cx="52" cy="8"  r="3.5" fill="#f07a30" opacity=".28"/>
+    <circle cx="8"  cy="52" r="3.5" fill="#f07a30" opacity=".28"/>
+  </svg>
 
   <a href="#" class="logo">
     <div class="logo-circle">❤️</div>
@@ -493,16 +549,16 @@ nav.scrolled { box-shadow: 0 2px 16px rgba(0,0,0,.1); }
     <li><a href="#">Program</a></li>
     <li><a href="#">Galeri</a></li>
     <li><a href="#">Kontak</a></li>
-    <li><a href="https://kasihibulatansa.my.id/" target="_blank" class="btn-donasi-nav">Donasi</a></li>
+    <li><a href="https://kasihibulatansa.my.id/" target="_blank" class="btn-nav-donasi">Donasi</a></li>
   </ul>
 
-  <button class="hamburger" id="hamburger" aria-label="Buka menu">
+  <button class="hamburger" id="ham" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
 <!-- Mobile drawer -->
-<div class="mobile-menu" id="mobileMenu">
+<div class="mob-drawer" id="drawer">
   <a href="#">Beranda</a>
   <a href="#">Tentang Kami</a>
   <a href="#">Program</a>
@@ -515,65 +571,76 @@ nav.scrolled { box-shadow: 0 2px 16px rgba(0,0,0,.1); }
 <!-- ══════════════ HERO ══════════════ -->
 <section id="hero">
 
-  <div class="hero-slider" id="heroSlider">
+  <!-- ── DESKTOP layout ── -->
+  <div class="hero-desktop">
+    <div class="hero-slider" id="sliderD">
+      <div class="slide active" style="background-image:url('https://kasihibulatansa.my.id/assets/img/gallery/dff1e06014974438a69a1f8cc44dd493.jpg')"></div>
+      <div class="slide" style="background-image:url('https://kasihibulatansa.my.id/assets/img/gallery/IMG-20260517-WA0155.jpg')"></div>
+      <div class="slide" style="background-image:url('https://kasihibulatansa.my.id/assets/img/gallery/20250315_101534.jpg')"></div>
+      <div class="slide" style="background-image:url('https://kasihibulatansa.my.id/assets/img/gallery/IMG-20260517-WA0049.jpg')"></div>
 
-    <div class="slide active"
-      style="background-image:url('https://kasihibulatansa.my.id/assets/img/gallery/dff1e06014974438a69a1f8cc44dd493.jpg')">
-    </div>
-    <div class="slide"
-      style="background-image:url('https://kasihibulatansa.my.id/assets/img/gallery/IMG-20260517-WA0155.jpg')">
-    </div>
-    <div class="slide"
-      style="background-image:url('https://kasihibulatansa.my.id/assets/img/gallery/20250315_101534.jpg')">
-    </div>
-    <div class="slide"
-      style="background-image:url('https://kasihibulatansa.my.id/assets/img/gallery/IMG-20260517-WA0049.jpg')">
-    </div>
-
-    <!-- Overlay text -->
-    <div class="hero-content">
-      <div class="hero-badge">
-        <span>🌟</span> Yayasan Non-Panti Anak Yatim &amp; Dhu'afa
+      <div class="hero-content">
+        <div class="hero-badge">🌟 Yayasan Non-Panti Anak Yatim &amp; Dhu'afa</div>
+        <h1 class="hero-title">
+          MEWUJUDKAN IMPIAN<br>
+          &amp; <span class="accent">MASA DEPAN TERANG</span><br>
+          ANAK YATIM PIATU.
+        </h1>
+        <p class="hero-sub">
+          Bersama Yayasan Non Panti Kasih Ibu Latansa, mari<br>
+          berikan kasih sayang, pendidikan, dan harapan.
+        </p>
+        <div class="hero-btns">
+          <a href="https://kasihibulatansa.my.id/" target="_blank" class="btn btn-green">Donasi Sekarang</a>
+          <a href="https://kasihibulatansa.my.id/home" target="_blank" class="btn btn-ghost">Pelajari Program Kami</a>
+        </div>
       </div>
 
-      <h1 class="hero-title">
-        MEWUJUDKAN IMPIAN<br>
-        &amp; <span class="accent">MASA DEPAN TERANG</span><br>
-        ANAK YATIM PIATU.
-      </h1>
+      <div class="slider-dots" id="dotsD"></div>
+    </div>
 
-      <p class="hero-subtitle">
-        Bersama Yayasan Non Panti Kasih Ibu Latansa, mari berikan kasih sayang, pendidikan, dan harapan.
-      </p>
+    <div class="pillars">
+      <div class="pillar"><div class="pillar-icon pi-o">❤️</div><span>Kasih Sayang</span></div>
+      <div class="pillar"><div class="pillar-icon pi-t">📖</div><span>Pendidikan</span></div>
+      <div class="pillar"><div class="pillar-icon pi-y">🤝</div><span>Pemberdayaan</span></div>
+    </div>
+  </div>
 
-      <div class="hero-btns">
-        <a href="https://kasihibulatansa.my.id/" target="_blank" class="btn btn-green">
-          Donasi Sekarang
-        </a>
-        <a href="https://kasihibulatansa.my.id/home" target="_blank" class="btn btn-ghost">
-          Pelajari Program Kami
-        </a>
+
+  <!-- ── MOBILE layout ── -->
+  <div class="hero-mobile">
+    <div class="hero-slider-mob" id="sliderM">
+      <div class="slide-mob active" style="background-image:url('https://kasihibulatansa.my.id/assets/img/gallery/dff1e06014974438a69a1f8cc44dd493.jpg')"></div>
+      <div class="slide-mob" style="background-image:url('https://kasihibulatansa.my.id/assets/img/gallery/IMG-20260517-WA0155.jpg')"></div>
+      <div class="slide-mob" style="background-image:url('https://kasihibulatansa.my.id/assets/img/gallery/20250315_101534.jpg')"></div>
+      <div class="slide-mob" style="background-image:url('https://kasihibulatansa.my.id/assets/img/gallery/IMG-20260517-WA0049.jpg')"></div>
+
+      <div class="hero-content-mob">
+        <div class="hero-badge-mob">🌟 Yayasan Non-Panti Anak Yatim &amp; Dhu'afa</div>
+        <h1 class="hero-title-mob">
+          MEWUJUDKAN IMPIAN<br>
+          &amp; <span class="accent">MASA DEPAN TERANG</span><br>
+          ANAK YATIM PIATU
+        </h1>
+        <p class="hero-sub-mob">
+          Bersama Yayasan Non Panti Kasih Ibu Latansa,<br>
+          mari berikan kasih sayang, pendidikan, dan harapan.
+        </p>
+        <div class="hero-spacer"></div>
+        <div class="hero-btns-mob">
+          <a href="https://kasihibulatansa.my.id/" target="_blank" class="btn-mob btn-mob-green">Donasi Sekarang</a>
+          <a href="https://kasihibulatansa.my.id/home" target="_blank" class="btn-mob btn-mob-ghost">Pelajari Program Kami</a>
+        </div>
       </div>
+
+      <div class="slider-dots-mob" id="dotsM"></div>
     </div>
 
-    <!-- Dots -->
-    <div class="slider-dots" id="sliderDots"></div>
-
-  </div><!-- /hero-slider -->
-
-  <!-- Pillars -->
-  <div class="pillars">
-    <div class="pillar">
-      <div class="pillar-icon pi-orange">❤️</div>
-      <span>Kasih Sayang</span>
-    </div>
-    <div class="pillar">
-      <div class="pillar-icon pi-teal">📖</div>
-      <span>Pendidikan</span>
-    </div>
-    <div class="pillar">
-      <div class="pillar-icon pi-yellow">🤝</div>
-      <span>Pemberdayaan</span>
+    <!-- Pillars mobile -->
+    <div class="pillars">
+      <div class="pillar"><div class="pillar-icon pi-o">❤️</div><span>Kasih Sayang</span></div>
+      <div class="pillar"><div class="pillar-icon pi-t">📖</div><span>Pendidikan</span></div>
+      <div class="pillar"><div class="pillar-icon pi-y">🤝</div><span>Pemberdayaan</span></div>
     </div>
   </div>
 
@@ -581,33 +648,31 @@ nav.scrolled { box-shadow: 0 2px 16px rgba(0,0,0,.1); }
 
 
 <script>
-  /* Navbar scroll */
-  const nav = document.getElementById('navbar');
-  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 8), {passive:true});
+/* Navbar */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', scrollY > 6), {passive:true});
 
-  /* Hamburger */
-  const ham = document.getElementById('hamburger');
-  const mob = document.getElementById('mobileMenu');
-  ham.addEventListener('click', () => {
-    ham.classList.toggle('open');
-    mob.classList.toggle('open');
-  });
-  mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-    ham.classList.remove('open'); mob.classList.remove('open');
-  }));
+/* Hamburger */
+const ham = document.getElementById('ham');
+const drawer = document.getElementById('drawer');
+ham.addEventListener('click', () => { ham.classList.toggle('open'); drawer.classList.toggle('open'); });
+drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  ham.classList.remove('open'); drawer.classList.remove('open');
+}));
 
-  /* Slider */
-  const slides = [...document.querySelectorAll('.slide')];
-  const dotsEl = document.getElementById('sliderDots');
+/* Generic slider factory */
+function makeSlider(sliderEl, dotsEl, slideClass, dotClass) {
+  const slides = [...sliderEl.querySelectorAll('.' + slideClass)];
   let cur = 0, timer;
 
   slides.forEach((_, i) => {
     const d = document.createElement('div');
-    d.className = 'dot' + (i===0?' active':'');
+    d.className = dotClass + (i === 0 ? ' active' : '');
     d.addEventListener('click', () => go(i));
     dotsEl.appendChild(d);
   });
-  const allDots = () => dotsEl.querySelectorAll('.dot');
+
+  const allDots = () => dotsEl.querySelectorAll('.' + dotClass);
 
   function go(n) {
     slides[cur].classList.remove('active');
@@ -617,21 +682,21 @@ nav.scrolled { box-shadow: 0 2px 16px rgba(0,0,0,.1); }
     allDots()[cur].classList.add('active');
   }
 
-  const next = () => go(cur + 1);
-  const start = () => { clearInterval(timer); timer = setInterval(next, 4500); };
-
+  const start = () => { clearInterval(timer); timer = setInterval(() => go(cur + 1), 4500); };
   start();
-  const sl = document.getElementById('heroSlider');
-  sl.addEventListener('mouseenter', () => clearInterval(timer));
-  sl.addEventListener('mouseleave', start);
+  sliderEl.addEventListener('mouseenter', () => clearInterval(timer));
+  sliderEl.addEventListener('mouseleave', start);
 
-  /* Touch swipe */
   let tx = 0;
-  sl.addEventListener('touchstart', e => tx = e.changedTouches[0].clientX, {passive:true});
-  sl.addEventListener('touchend', e => {
+  sliderEl.addEventListener('touchstart', e => tx = e.changedTouches[0].clientX, {passive:true});
+  sliderEl.addEventListener('touchend', e => {
     const dx = e.changedTouches[0].clientX - tx;
-    if (Math.abs(dx) > 45) { go(dx < 0 ? cur+1 : cur-1); start(); }
+    if (Math.abs(dx) > 45) { go(dx < 0 ? cur + 1 : cur - 1); start(); }
   }, {passive:true});
+}
+
+makeSlider(document.getElementById('sliderD'), document.getElementById('dotsD'), 'slide',     'dot');
+makeSlider(document.getElementById('sliderM'), document.getElementById('dotsM'), 'slide-mob', 'dot-mob');
 </script>
 </body>
 </html>
