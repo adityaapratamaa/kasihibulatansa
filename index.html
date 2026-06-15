@@ -55,11 +55,10 @@ nav.scrolled { box-shadow: 0 2px 16px rgba(0,0,0,.08); }
 }
 .logo-circle {
   width: 52px; height: 52px;
-  background: var(--orange);
+  background: transparent;
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  font-size: 26px; flex-shrink: 0;
-  box-shadow: 0 3px 12px rgba(240,122,48,.35);
+  flex-shrink: 0;
 }
 .logo-text strong { display: block; font-size: 16px; font-weight: 800; color: var(--dark); }
 .logo-text span   { display: block; font-size: 13px; font-weight: 600; color: var(--teal-dark); }
@@ -536,7 +535,33 @@ nav.scrolled { box-shadow: 0 2px 16px rgba(0,0,0,.08); }
   </svg>
 
   <a href="#" class="logo">
-    <div class="logo-circle">❤️</div>
+    <div class="logo-circle">
+      <!-- Bintang 8 sudut hijau dengan siluet ibu & anak -->
+      <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Bintang 8 sudut -->
+        <polygon points="
+          26,2 30,18 44,10 34,22 50,26 34,30 44,42 30,34 26,50 22,34 8,42 18,30 2,26 18,22 8,10 22,18
+        " fill="url(#starGrad)" />
+        <!-- Inner lighter polygon for depth -->
+        <polygon points="
+          26,7 29.5,19 41,12.5 33,23 45,26 33,29 41,39.5 29.5,33 26,45 22.5,33 15,39.5 19,29 7,26 19,23 15,12.5 22.5,19
+        " fill="rgba(255,255,255,0.08)" />
+        <!-- Siluet ibu (besar, kiri) -->
+        <ellipse cx="22" cy="20" rx="4.5" ry="4.5" fill="white" opacity="0.95"/>
+        <path d="M14 40 C14 31 30 31 30 40" fill="white" opacity="0.95"/>
+        <!-- Siluet anak (kecil, kanan, depan ibu) -->
+        <ellipse cx="29" cy="24" rx="3" ry="3" fill="white" opacity="0.9"/>
+        <path d="M23 40 C23 33 35 33 35 40" fill="white" opacity="0.9"/>
+        <!-- Gradient defs -->
+        <defs>
+          <linearGradient id="starGrad" x1="26" y1="2" x2="26" y2="50" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#2eaa4a"/>
+            <stop offset="55%" stop-color="#1d8c38"/>
+            <stop offset="100%" stop-color="#e8d88a"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
     <div class="logo-text">
       <strong>Kasih Ibu</strong>
       <span>Latansa</span>
