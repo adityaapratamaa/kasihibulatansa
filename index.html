@@ -768,8 +768,8 @@ footer { background: #0e1c22; }
 .footer-top { padding: 72px 0 52px; }
 .footer-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1.6fr;
-  gap: 48px;
+  grid-template-columns: 1.8fr 1fr 1fr 1.4fr;
+  gap: 40px;
 }
 .footer-brand p {
   font-size: 13.5px; line-height: 1.75;
@@ -834,8 +834,9 @@ footer { background: #0e1c22; }
   .acara-grid { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; }
   .galeri-grid { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, 200px); }
   .gal-big { grid-row: auto; grid-column: 1 / 3; }
-  .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
   .footer-brand { grid-column: 1 / 3; }
+  .footer-map-col { grid-column: 1 / 3; }
 }
 
 /* ══════════════════════════════════════════════
@@ -866,8 +867,9 @@ footer { background: #0e1c22; }
   }
   .gal-big { grid-row: auto; grid-column: 1 / 3; }
 
-  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
   .footer-brand { grid-column: auto; }
+  .footer-map-col { grid-column: auto; }
   .footer-bottom .container { justify-content: center; text-align: center; }
 }
 </style>
@@ -992,7 +994,7 @@ footer { background: #0e1c22; }
     <li><a href="#">Program</a></li>
     <li><a href="#">Galeri</a></li>
     <li><a href="#">Kontak</a></li>
-    <li><a href="https://kasihibulatansa.my.id/" target="_blank" class="btn-nav-donasi">Donasi</a></li>
+    <li><a href="#sec-donasi" class="btn-nav-donasi" onclick="smoothTo('sec-donasi');return false;">Donasi</a></li>
   </ul>
 
   <button class="hamburger" id="ham" aria-label="Menu">
@@ -1007,7 +1009,7 @@ footer { background: #0e1c22; }
   <a href="#">Program</a>
   <a href="#">Galeri</a>
   <a href="#">Kontak</a>
-  <a href="https://kasihibulatansa.my.id/" target="_blank" class="mob-donasi">Donasi Sekarang</a>
+  <a href="#sec-donasi" class="mob-donasi" onclick="smoothTo('sec-donasi');return false;">Donasi Sekarang</a>
 </div>
 
 
@@ -1034,8 +1036,8 @@ footer { background: #0e1c22; }
           berikan kasih sayang, pendidikan, dan harapan.
         </p>
         <div class="hero-btns">
-          <a href="https://kasihibulatansa.my.id/" target="_blank" class="btn btn-green">Donasi Sekarang</a>
-          <a href="https://kasihibulatansa.my.id/home" target="_blank" class="btn btn-ghost">Pelajari Program Kami</a>
+          <a href="#sec-donasi" class="btn btn-green" onclick="openModal('donasi');return false;">Donasi Sekarang</a>
+          <a href="#program" class="btn btn-ghost" onclick="smoothTo('program');return false;">Pelajari Program Kami</a>
         </div>
       </div>
 
@@ -1071,8 +1073,8 @@ footer { background: #0e1c22; }
         </p>
         <div class="hero-spacer"></div>
         <div class="hero-btns-mob">
-          <a href="https://kasihibulatansa.my.id/" target="_blank" class="btn-mob btn-mob-green">Donasi Sekarang</a>
-          <a href="https://kasihibulatansa.my.id/home" target="_blank" class="btn-mob btn-mob-ghost">Pelajari Program Kami</a>
+          <a href="#sec-donasi" class="btn-mob btn-mob-green" onclick="openModal('donasi');return false;">Donasi Sekarang</a>
+          <a href="#program" class="btn-mob btn-mob-ghost" onclick="smoothTo('program');return false;">Pelajari Program Kami</a>
         </div>
       </div>
 
@@ -1239,7 +1241,7 @@ footer { background: #0e1c22; }
           <div class="acara-meta"><span>📅 Juli 2026</span><span>📍 Jakarta Selatan</span></div>
           <h3>Santunan Anak Yatim &amp; Dhuafa</h3>
           <p>Kegiatan santunan rutin bulanan bersama para donatur untuk memberikan bantuan langsung kepada anak-anak binaan dan keluarga dhuafa di sekitar yayasan.</p>
-          <a href="https://kasihibulatansa.my.id/" target="_blank" class="acara-link">Selengkapnya →</a>
+          <a href="#" class="acara-link" onclick="openModal('acara');return false;">Selengkapnya →</a>
         </div>
       </article>
 
@@ -1251,7 +1253,7 @@ footer { background: #0e1c22; }
           <div class="acara-meta"><span>📅 Juni 2026</span><span>📍 Petukangan Utara</span></div>
           <h3>Bimbingan Belajar Intensif Semester Ganjil</h3>
           <p>Program belajar intensif persiapan ujian semester bagi anak-anak binaan SD dan SMP, dipandu oleh tenaga pengajar sukarela berpengalaman.</p>
-          <a href="https://kasihibulatansa.my.id/" target="_blank" class="acara-link">Selengkapnya →</a>
+          <a href="#" class="acara-link" onclick="openModal('acara');return false;">Selengkapnya →</a>
         </div>
       </article>
 
@@ -1263,14 +1265,14 @@ footer { background: #0e1c22; }
           <div class="acara-meta"><span>📅 Maret 2026</span><span>📍 The Sultan Hotel</span></div>
           <h3>Gathering Donatur &amp; Peringatan HUT Yayasan</h3>
           <p>Acara tahunan yang mempertemukan 100 anak binaan dengan para donatur setia dalam suasana penuh kebersamaan dan syukur di The Sultan Hotel.</p>
-          <a href="https://kasihibulatansa.my.id/" target="_blank" class="acara-link">Selengkapnya →</a>
+          <a href="#" class="acara-link" onclick="openModal('acara');return false;">Selengkapnya →</a>
         </div>
       </article>
 
     </div>
 
     <div class="acara-cta reveal">
-      <a href="https://kasihibulatansa.my.id/" target="_blank" class="btn-outline-dark">Lihat Semua Kegiatan</a>
+      <a href="#acara" class="btn-outline-dark" onclick="smoothTo('acara');return false;">Lihat Semua Kegiatan</a>
     </div>
   </div>
 </section>
@@ -1293,7 +1295,7 @@ footer { background: #0e1c22; }
     </div>
 
     <div class="acara-cta reveal">
-      <a href="https://kasihibulatansa.my.id/" target="_blank" class="btn-outline-white">Lihat Galeri Lengkap</a>
+      <a href="#galeri" class="btn-outline-white" onclick="openModal('galeri');return false;">Lihat Galeri Lengkap</a>
     </div>
   </div>
 </section>
@@ -1302,14 +1304,14 @@ footer { background: #0e1c22; }
 <!-- ══════════════════════════════════════════════
      SECTION 7 — CTA DONASI
 ══════════════════════════════════════════════ -->
-<section class="sec-cta-donasi">
+<section class="sec-cta-donasi" id="sec-donasi">
   <div class="container">
     <div class="cta-donasi-inner reveal">
       <div class="cta-icon">🤲</div>
       <h2>Satu Kebaikanmu,<br>Sejuta Harapan untuk Mereka</h2>
       <p>Donasi Anda — seberapapun — akan mengubah kehidupan seorang anak yatim dan dhuafa. Mari bersama membangun generasi yang lebih baik.</p>
       <div class="cta-btns">
-        <a href="https://kasihibulatansa.my.id/" target="_blank" class="btn btn-green">Donasi Sekarang</a>
+        <a href="#sec-donasi" class="btn btn-green" onclick="openModal('donasi');return false;">Donasi Sekarang</a>
         <a href="https://wa.me/6285710476992" target="_blank" class="btn btn-wа">💬 Hubungi Kami</a>
       </div>
     </div>
@@ -1390,7 +1392,7 @@ footer { background: #0e1c22; }
         <ul class="footer-contact">
           <li>
             <span>📍</span>
-            <span>Jl. H. Muchtar Raya No.44, RT.10/RW.1, Petukangan Utara, Kec. Pesanggrahan, Jakarta Selatan</span>
+            <a href="https://maps.google.com/?q=Jl.+H.+Muchtar+Raya+No.44+Petukangan+Utara+Pesanggrahan+Jakarta+Selatan" target="_blank" style="color:rgba(255,255,255,.5);text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#3a9caa'" onmouseout="this.style.color='rgba(255,255,255,.5)'">Jl. H. Muchtar Raya No.44, RT.10/RW.1, Petukangan Utara, Kec. Pesanggrahan, Jakarta Selatan</a>
           </li>
           <li>
             <span>📞</span>
@@ -1398,13 +1400,30 @@ footer { background: #0e1c22; }
           </li>
           <li>
             <span>🌐</span>
-            <a href="https://kasihibulatansa.my.id/" target="_blank">kasihibulatansa.my.id</a>
+            <span>kasihibulatansa.my.id</span>
           </li>
           <li>
             <span>⏰</span>
             <span>Senin – Jumat, 08.00 – 17.00 WIB</span>
           </li>
         </ul>
+      </div>
+
+      <!-- Peta Lokasi -->
+      <div class="footer-map-col">
+        <h4>Lokasi Kami</h4>
+        <div class="footer-map-wrap">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.2142!2d106.75824!3d-6.24881!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f1a5e45eab65%3A0xb4b6ea1e2d22f5ee!2sKasih%20Ibu%20%22la%20Tansa%22!5e0!3m2!1sid!2sid!4v1718000000000!5m2!1sid!2sid"
+            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            title="Lokasi Yayasan Kasih Ibu La Tansa">
+          </iframe>
+        </div>
+        <a href="https://maps.google.com/?q=Kasih+Ibu+la+Tansa+Jl+H+Muchtar+Raya+No+44+Petukangan+Utara+Pesanggrahan+Jakarta+Selatan+15156"
+           target="_blank" class="btn-gmaps">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Buka di Google Maps
+        </a>
       </div>
 
     </div>
@@ -1514,3 +1533,280 @@ document.querySelectorAll('.stat-num[data-target]').forEach(el => counterObserve
 </script>
 </body>
 </html>
+<!-- ══════════════════════════════════════════════
+     MODAL OVERLAY
+══════════════════════════════════════════════ -->
+<div id="modal-overlay" onclick="closeModal()" style="
+  display:none; position:fixed; inset:0; z-index:900;
+  background:rgba(14,28,34,.65); backdrop-filter:blur(6px);
+  align-items:center; justify-content:center; padding:20px;
+"></div>
+
+<!-- Modal: Donasi -->
+<div id="modal-donasi" class="modal-box" style="display:none;">
+  <button class="modal-close" onclick="closeModal()">✕</button>
+  <div class="modal-icon">🤲</div>
+  <h2 class="modal-title">Cara Berdonasi</h2>
+  <p class="modal-sub">Setiap donasi Anda — berapapun — akan langsung menyentuh kehidupan anak-anak yatim dan dhuafa binaan kami.</p>
+
+  <div class="modal-methods">
+    <div class="method-card">
+      <div class="method-label">Transfer Bank</div>
+      <div class="method-bank">🏦 Bank BCA</div>
+      <div class="method-no">1234 5678 90</div>
+      <div class="method-name">a.n. Yayasan Kasih Ibu La Tansa</div>
+      <button class="btn-copy" onclick="copyText('1234567890', this)">Salin Nomor Rekening</button>
+    </div>
+    <div class="method-card">
+      <div class="method-label">Transfer Bank</div>
+      <div class="method-bank">🏦 Bank Mandiri</div>
+      <div class="method-no">0987 6543 210</div>
+      <div class="method-name">a.n. Yayasan Kasih Ibu La Tansa</div>
+      <button class="btn-copy" onclick="copyText('0987654321', this)">Salin Nomor Rekening</button>
+    </div>
+  </div>
+
+  <div class="modal-divider"><span>atau hubungi kami</span></div>
+
+  <a href="https://wa.me/6285710476992?text=Assalamu'alaikum,%20saya%20ingin%20berdonasi%20ke%20Yayasan%20Kasih%20Ibu%20La%20Tansa"
+     target="_blank" class="btn-modal-wa">
+    💬 Konfirmasi via WhatsApp
+  </a>
+  <p class="modal-note">* Mohon konfirmasi donasi via WhatsApp agar kami dapat menerbitkan bukti penerimaan.</p>
+</div>
+
+<!-- Modal: Acara (Segera Hadir) -->
+<div id="modal-acara" class="modal-box" style="display:none;">
+  <button class="modal-close" onclick="closeModal()">✕</button>
+  <div class="modal-icon">📅</div>
+  <h2 class="modal-title">Detail Acara</h2>
+  <p class="modal-sub">Halaman detail kegiatan sedang dalam pengembangan. Untuk informasi lengkap mengenai acara, silakan hubungi kami langsung.</p>
+  <div class="coming-badge">🚧 Segera Hadir</div>
+  <a href="https://wa.me/6285710476992?text=Assalamu'alaikum,%20saya%20ingin%20mengetahui%20informasi%20acara%20terbaru"
+     target="_blank" class="btn-modal-wa" style="margin-top:20px;">
+    💬 Tanya via WhatsApp
+  </a>
+</div>
+
+<!-- Modal: Galeri -->
+<div id="modal-galeri" class="modal-box" style="display:none;">
+  <button class="modal-close" onclick="closeModal()">✕</button>
+  <div class="modal-icon">🖼️</div>
+  <h2 class="modal-title">Galeri Lengkap</h2>
+  <p class="modal-sub">Galeri foto lengkap sedang disiapkan. Sementara itu, ikuti kegiatan kami di Instagram untuk melihat momen-momen terbaru bersama anak-anak binaan.</p>
+  <div class="coming-badge">📸 Segera Hadir</div>
+  <a href="https://www.instagram.com/kasihibulatansa/" target="_blank" class="btn-modal-ig" style="margin-top:20px;">
+    📷 Lihat di Instagram
+  </a>
+</div>
+
+<style>
+/* ── Modal Styles ── */
+#modal-overlay { display:none; }
+#modal-overlay.open {
+  display:flex !important;
+}
+
+.modal-box {
+  position:fixed;
+  top:50%; left:50%;
+  transform:translate(-50%, -50%) scale(.94);
+  z-index:910;
+  background:#fff;
+  border-radius:24px;
+  padding:40px 36px 36px;
+  width:100%; max-width:460px;
+  text-align:center;
+  box-shadow:0 24px 80px rgba(0,0,0,.25);
+  opacity:0;
+  transition:opacity .28s ease, transform .28s ease;
+  pointer-events:none;
+  max-height:90vh;
+  overflow-y:auto;
+}
+.modal-box.open {
+  opacity:1;
+  transform:translate(-50%, -50%) scale(1);
+  pointer-events:all;
+}
+
+.modal-close {
+  position:absolute; top:16px; right:18px;
+  background:none; border:none; font-size:18px;
+  color:#aaa; cursor:pointer; line-height:1;
+  transition:color .2s;
+}
+.modal-close:hover { color:var(--dark); }
+
+.modal-icon { font-size:48px; margin-bottom:14px; display:block; }
+.modal-title {
+  font-size:22px; font-weight:800;
+  color:var(--dark); margin-bottom:10px;
+}
+.modal-sub {
+  font-size:14px; color:#6a8a92; line-height:1.7;
+  margin-bottom:28px;
+}
+
+.modal-methods {
+  display:grid; grid-template-columns:1fr 1fr; gap:14px;
+  margin-bottom:24px;
+}
+.method-card {
+  background:#f5fcfd;
+  border:1px solid #d6eef1;
+  border-radius:14px;
+  padding:18px 14px;
+  text-align:left;
+}
+.method-label {
+  font-size:10px; font-weight:700;
+  text-transform:uppercase; letter-spacing:1.5px;
+  color:#8aabb0; margin-bottom:6px;
+}
+.method-bank { font-size:13px; font-weight:700; color:var(--dark); margin-bottom:4px; }
+.method-no {
+  font-size:18px; font-weight:900;
+  color:var(--teal-dark); letter-spacing:.5px; margin-bottom:4px;
+}
+.method-name { font-size:11px; color:#8aabb0; margin-bottom:14px; line-height:1.4; }
+.btn-copy {
+  width:100%; padding:8px;
+  background:var(--teal-dark); color:#fff;
+  border:none; border-radius:8px;
+  font-family:'Montserrat',sans-serif;
+  font-size:11.5px; font-weight:700;
+  cursor:pointer; transition:background .2s;
+}
+.btn-copy:hover { background:#2d7e8a; }
+.btn-copy.copied { background:var(--green); }
+
+.modal-divider {
+  display:flex; align-items:center; gap:12px;
+  margin-bottom:20px; color:#b0c8cc; font-size:12px;
+}
+.modal-divider::before, .modal-divider::after {
+  content:''; flex:1; height:1px; background:#e8f2f4;
+}
+
+.btn-modal-wa {
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  width:100%; padding:14px;
+  background:#25d366; color:#fff;
+  border-radius:12px; font-family:'Montserrat',sans-serif;
+  font-weight:700; font-size:14px;
+  text-decoration:none;
+  transition:background .2s, transform .18s;
+}
+.btn-modal-wa:hover { background:#1ab356; transform:translateY(-2px); }
+
+.btn-modal-ig {
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  width:100%; padding:14px;
+  background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);
+  color:#fff; border-radius:12px;
+  font-family:'Montserrat',sans-serif;
+  font-weight:700; font-size:14px;
+  text-decoration:none;
+  transition:opacity .2s, transform .18s;
+}
+.btn-modal-ig:hover { opacity:.88; transform:translateY(-2px); }
+
+.modal-note {
+  font-size:11.5px; color:#aac0c4;
+  margin-top:14px; line-height:1.6;
+}
+
+.coming-badge {
+  display:inline-block;
+  background:#fff6d9; color:#b8860b;
+  border:1px solid #f5c535;
+  font-size:13px; font-weight:700;
+  padding:8px 20px; border-radius:30px;
+  margin-bottom:4px;
+}
+
+@media(max-width:480px) {
+  .modal-box { padding:32px 22px 28px; }
+  .modal-methods { grid-template-columns:1fr; }
+}
+/* ── Footer Map ── */
+.footer-map-col h4 {
+  font-size: 13px; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  color: rgba(255,255,255,.9);
+  margin-bottom: 16px;
+}
+.footer-map-wrap {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.08);
+  margin-bottom: 12px;
+  position: relative;
+}
+.footer-map-wrap iframe {
+  width: 100%; height: 180px;
+  display: block; filter: grayscale(30%) brightness(.85);
+  transition: filter .3s;
+}
+.footer-map-wrap:hover iframe { filter: grayscale(0%) brightness(1); }
+.btn-gmaps {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%; padding: 11px 16px;
+  background: #4285f4; color: #fff;
+  border-radius: 10px; text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12.5px; font-weight: 700;
+  transition: background .2s, transform .18s;
+}
+.btn-gmaps:hover { background: #2b6fd4; transform: translateY(-1px); }
+.btn-gmaps svg { flex-shrink: 0; }
+</style>
+
+<script>
+/* ── Smooth scroll helper ── */
+function smoothTo(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const top = el.getBoundingClientRect().top + window.scrollY - 88;
+  window.scrollTo({ top, behavior:'smooth' });
+}
+
+/* ── Modal ── */
+let activeModal = null;
+
+function openModal(name) {
+  closeModal(true);
+  const overlay = document.getElementById('modal-overlay');
+  const box = document.getElementById('modal-' + name);
+  if (!box) return;
+  overlay.classList.add('open');
+  box.style.display = 'block';
+  requestAnimationFrame(() => box.classList.add('open'));
+  document.body.style.overflow = 'hidden';
+  activeModal = name;
+}
+
+function closeModal(silent) {
+  const overlay = document.getElementById('modal-overlay');
+  overlay.classList.remove('open');
+  document.querySelectorAll('.modal-box').forEach(b => {
+    b.classList.remove('open');
+    setTimeout(() => { if (!b.classList.contains('open')) b.style.display = 'none'; }, 300);
+  });
+  document.body.style.overflow = '';
+  activeModal = null;
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+/* ── Copy to clipboard ── */
+function copyText(text, btn) {
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.textContent;
+    btn.textContent = '✓ Tersalin!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 2000);
+  });
+}
+</script>
