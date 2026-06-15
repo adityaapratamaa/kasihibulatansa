@@ -452,6 +452,424 @@ nav.scrolled { box-shadow: 0 2px 16px rgba(0,0,0,.08); }
 @media (max-width: 380px) {
   .hero-title-mob { font-size: 26px; }
 }
+
+
+/* ══════════════════════════════════════════════
+   SCROLL REVEAL ANIMATIONS
+   (Pure CSS + Intersection Observer — no libs)
+══════════════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .55s ease, transform .55s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-d1 { transition-delay: .1s; }
+.reveal-d2 { transition-delay: .2s; }
+.reveal-d3 { transition-delay: .3s; }
+
+
+/* ══════════════════════════════════════════════
+   SHARED SECTION UTILITIES
+══════════════════════════════════════════════ */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.sec-label {
+  display: inline-block;
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--teal-dark);
+  margin-bottom: 12px;
+}
+.sec-title {
+  font-size: clamp(26px, 3vw, 40px);
+  font-weight: 800; line-height: 1.2;
+  color: var(--dark);
+  margin-bottom: 16px;
+}
+.sec-title .hl { color: var(--teal-dark); }
+.sec-desc {
+  font-size: 15px; font-weight: 500; line-height: 1.75;
+  color: #556870; max-width: 560px;
+  margin-bottom: 52px;
+}
+
+
+/* ══════════════════════════════════════════════
+   SECTION 2 — KEUNGGULAN
+══════════════════════════════════════════════ */
+.sec-keunggulan {
+  background: #fff;
+  padding: 96px 0 80px;
+}
+.keunggulan-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.keung-card {
+  background: #f8fcfd;
+  border: 1px solid #e6f2f4;
+  border-radius: 20px;
+  padding: 36px 32px;
+  transition: box-shadow .25s, transform .25s;
+}
+.keung-card:hover {
+  box-shadow: 0 12px 40px rgba(58,156,170,.13);
+  transform: translateY(-4px);
+}
+.keung-icon {
+  width: 60px; height: 60px; border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 22px;
+}
+.keung-card h3 {
+  font-size: 18px; font-weight: 800; color: var(--dark);
+  margin-bottom: 12px;
+}
+.keung-card p {
+  font-size: 14px; line-height: 1.75; color: #556870;
+  margin-bottom: 24px;
+}
+.keung-stat {
+  display: flex; align-items: baseline; gap: 8px;
+  padding-top: 20px;
+  border-top: 1px solid #e6f2f4;
+}
+.keung-stat strong {
+  font-size: 28px; font-weight: 800; color: var(--teal-dark);
+}
+.keung-stat span { font-size: 13px; color: #8aabb0; font-weight: 600; }
+
+
+/* ══════════════════════════════════════════════
+   SECTION 3 — PROGRAM
+══════════════════════════════════════════════ */
+.sec-program {
+  background: var(--teal-bg);
+  padding: 96px 0 80px;
+}
+.sec-program .sec-title .hl { color: var(--green); }
+.program-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.prog-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 32px 28px;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow .25s, transform .25s;
+}
+.prog-card:hover {
+  box-shadow: 0 10px 36px rgba(0,0,0,.1);
+  transform: translateY(-3px);
+}
+.prog-num {
+  position: absolute; top: 24px; right: 24px;
+  font-size: 36px; font-weight: 900;
+  color: var(--teal-bg);
+  line-height: 1;
+}
+.prog-icon { font-size: 34px; margin-bottom: 16px; }
+.prog-card h3 {
+  font-size: 16px; font-weight: 800; color: var(--dark);
+  margin-bottom: 10px;
+}
+.prog-card p { font-size: 13.5px; line-height: 1.75; color: #556870; }
+
+
+/* ══════════════════════════════════════════════
+   SECTION 4 — STATISTIK
+══════════════════════════════════════════════ */
+.sec-stats {
+  background: linear-gradient(135deg, var(--dark) 0%, #1a4a55 100%);
+  padding: 72px 0;
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  text-align: center;
+}
+.stat-item {
+  padding: 28px 20px;
+  position: relative;
+  color: #fff;
+}
+.stat-item:not(:last-child)::after {
+  content: '';
+  position: absolute; right: 0; top: 20%; bottom: 20%;
+  width: 1px; background: rgba(255,255,255,.12);
+}
+.stat-num {
+  display: inline-block;
+  font-size: clamp(36px, 4vw, 52px);
+  font-weight: 900;
+  color: #f5c535;
+  line-height: 1;
+}
+.stat-plus { display: inline-block; font-size: 28px; font-weight: 800; color: #f5c535; }
+.stat-label { display: inline-block; font-size: 24px; font-weight: 700; color: rgba(255,255,255,.4); }
+.stat-item p {
+  font-size: 13px; font-weight: 600; color: rgba(255,255,255,.65);
+  margin-top: 8px; letter-spacing: .3px;
+}
+
+
+/* ══════════════════════════════════════════════
+   SECTION 5 — ACARA
+══════════════════════════════════════════════ */
+.sec-acara {
+  background: #fff;
+  padding: 96px 0 80px;
+}
+.acara-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-bottom: 40px;
+}
+.acara-card {
+  background: #fff;
+  border: 1px solid #eef4f5;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: box-shadow .25s, transform .25s;
+}
+.acara-card:hover {
+  box-shadow: 0 12px 40px rgba(0,0,0,.1);
+  transform: translateY(-4px);
+}
+.acara-img {
+  height: 200px;
+  background-size: cover; background-position: center;
+  position: relative;
+}
+.acara-badge {
+  position: absolute; top: 14px; left: 14px;
+  background: var(--orange);
+  color: #fff; font-size: 11px; font-weight: 700;
+  padding: 4px 12px; border-radius: 30px;
+  letter-spacing: .5px;
+}
+.acara-body { padding: 24px; }
+.acara-meta {
+  display: flex; gap: 16px;
+  font-size: 12px; font-weight: 600; color: #8aabb0;
+  margin-bottom: 10px;
+}
+.acara-card h3 {
+  font-size: 16px; font-weight: 800; color: var(--dark);
+  margin-bottom: 10px; line-height: 1.35;
+}
+.acara-card p { font-size: 13px; line-height: 1.7; color: #556870; margin-bottom: 18px; }
+.acara-link {
+  font-size: 13px; font-weight: 700;
+  color: var(--teal-dark); text-decoration: none;
+  transition: color .2s;
+}
+.acara-link:hover { color: var(--dark); }
+.acara-cta { text-align: center; }
+.btn-outline-dark {
+  display: inline-flex; align-items: center;
+  padding: 13px 36px; border-radius: 40px;
+  border: 2px solid var(--dark); color: var(--dark);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700; font-size: 14px;
+  text-decoration: none;
+  transition: background .2s, color .2s, transform .18s;
+}
+.btn-outline-dark:hover {
+  background: var(--dark); color: #fff;
+  transform: translateY(-2px);
+}
+
+
+/* ══════════════════════════════════════════════
+   SECTION 6 — GALERI
+══════════════════════════════════════════════ */
+.sec-galeri {
+  background: var(--dark);
+  padding: 96px 0 80px;
+}
+.sec-galeri .sec-desc { color: rgba(255,255,255,.6); }
+.galeri-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 220px 220px;
+  gap: 14px;
+  margin-bottom: 40px;
+}
+.gal-item {
+  border-radius: 14px;
+  background-size: cover; background-position: center;
+  transition: opacity .25s;
+}
+.gal-item:hover { opacity: .85; }
+.gal-big { grid-row: 1 / 3; }
+.btn-outline-white {
+  display: inline-flex; align-items: center;
+  padding: 13px 36px; border-radius: 40px;
+  border: 2px solid rgba(255,255,255,.55); color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700; font-size: 14px;
+  text-decoration: none;
+  transition: background .2s, border-color .2s, transform .18s;
+}
+.btn-outline-white:hover {
+  background: rgba(255,255,255,.1); border-color: #fff;
+  transform: translateY(-2px);
+}
+
+
+/* ══════════════════════════════════════════════
+   SECTION 7 — CTA DONASI
+══════════════════════════════════════════════ */
+.sec-cta-donasi {
+  background: linear-gradient(135deg, #e8f8f0 0%, #ceeaed 100%);
+  padding: 96px 0;
+}
+.cta-donasi-inner {
+  text-align: center;
+  max-width: 620px; margin: 0 auto;
+}
+.cta-icon { font-size: 56px; margin-bottom: 20px; display: block; }
+.cta-donasi-inner h2 {
+  font-size: clamp(26px, 3vw, 38px);
+  font-weight: 800; color: var(--dark);
+  line-height: 1.2; margin-bottom: 16px;
+}
+.cta-donasi-inner p {
+  font-size: 15px; color: #556870; line-height: 1.75;
+  margin-bottom: 36px;
+}
+.cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.btn-wа {
+  background: #25d366; color: #fff !important;
+  box-shadow: 0 4px 16px rgba(37,211,102,.35);
+}
+.btn-wа:hover { background: #1ab356 !important; }
+
+
+/* ══════════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════════ */
+footer { background: #0e1c22; }
+.footer-top { padding: 72px 0 52px; }
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.6fr;
+  gap: 48px;
+}
+.footer-brand p {
+  font-size: 13.5px; line-height: 1.75;
+  color: rgba(255,255,255,.5);
+  margin: 16px 0 24px;
+}
+.footer-logo { margin-bottom: 4px; }
+.footer-social { display: flex; gap: 12px; }
+.footer-social a {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: rgba(255,255,255,.07);
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,.6);
+  transition: background .2s, color .2s;
+}
+.footer-social a:hover { background: var(--teal-dark); color: #fff; }
+
+.footer-col h4 {
+  font-size: 13px; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  color: rgba(255,255,255,.9);
+  margin-bottom: 20px;
+}
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col ul li a {
+  font-size: 14px; color: rgba(255,255,255,.5);
+  text-decoration: none; font-weight: 500;
+  transition: color .2s;
+}
+.footer-col ul li a:hover { color: var(--teal-dark); }
+
+.footer-contact { gap: 14px !important; }
+.footer-contact li {
+  display: flex; gap: 12px;
+  font-size: 13.5px; color: rgba(255,255,255,.5);
+  line-height: 1.6;
+}
+.footer-contact li span:first-child { flex-shrink: 0; }
+.footer-contact a { color: rgba(255,255,255,.5); text-decoration: none; transition: color .2s; }
+.footer-contact a:hover { color: var(--teal-dark); }
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,.07);
+  padding: 20px 0;
+}
+.footer-bottom .container {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 8px;
+}
+.footer-bottom p { font-size: 13px; color: rgba(255,255,255,.3); font-weight: 500; }
+
+
+/* ══════════════════════════════════════════════
+   RESPONSIVE — TABLET (max 900px)
+══════════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .container { padding: 0 28px; }
+  .keunggulan-grid { grid-template-columns: 1fr; gap: 20px; }
+  .program-grid { grid-template-columns: repeat(2, 1fr); }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .stat-item:nth-child(2)::after { display: none; }
+  .acara-grid { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; }
+  .galeri-grid { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, 200px); }
+  .gal-big { grid-row: auto; grid-column: 1 / 3; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+  .footer-brand { grid-column: 1 / 3; }
+}
+
+/* ══════════════════════════════════════════════
+   RESPONSIVE — MOBILE (max 767px)
+══════════════════════════════════════════════ */
+@media (max-width: 767px) {
+  .container { padding: 0 20px; }
+  .sec-keunggulan, .sec-program, .sec-acara,
+  .sec-galeri, .sec-cta-donasi { padding: 64px 0 52px; }
+  .sec-stats { padding: 52px 0; }
+  .sec-desc { margin-bottom: 36px; }
+
+  .keunggulan-grid { grid-template-columns: 1fr; }
+  .keung-card { padding: 28px 24px; }
+
+  .program-grid { grid-template-columns: 1fr; }
+
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .stat-item:nth-child(2)::after { display: none; }
+
+  .acara-grid { grid-template-columns: 1fr; }
+  .cta-btns { flex-direction: column; align-items: center; }
+  .btn, .btn-outline-dark, .btn-outline-white { width: 100%; max-width: 320px; justify-content: center; }
+
+  .galeri-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 160px 160px 160px;
+  }
+  .gal-big { grid-row: auto; grid-column: 1 / 3; }
+
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  .footer-brand { grid-column: auto; }
+  .footer-bottom .container { justify-content: center; text-align: center; }
+}
 </style>
 </head>
 <body>
@@ -672,6 +1090,335 @@ nav.scrolled { box-shadow: 0 2px 16px rgba(0,0,0,.08); }
 </section>
 
 
+<!-- ══════════════════════════════════════════════
+     SECTION 2 — KEUNGGULAN / PILAR PROGRAM
+══════════════════════════════════════════════ -->
+<section id="keunggulan" class="sec-keunggulan">
+  <div class="container">
+    <div class="sec-label reveal">Mengapa Kami</div>
+    <h2 class="sec-title reveal">Tiga Pilar Utama<br><span class="hl">Program Kami</span></h2>
+    <p class="sec-desc reveal">Setiap anak berhak tumbuh dengan kasih sayang, pendidikan, dan kesempatan yang sama. Inilah fondasi yang menopang setiap langkah program Yayasan Kasih Ibu Latansa.</p>
+
+    <div class="keunggulan-grid">
+      <div class="keung-card reveal reveal-d1">
+        <div class="keung-icon" style="background:#fff6d9">
+          <svg width="32" height="32" fill="none" viewBox="0 0 32 32"><path d="M16 3C9.373 3 4 8.373 4 15c0 4.37 2.257 8.213 5.657 10.45L16 29l6.343-3.55C25.743 23.213 28 19.37 28 15c0-6.627-5.373-12-12-12z" fill="#f5c535" opacity=".25"/><path d="M16 7c-4.418 0-8 3.582-8 8 0 2.914 1.548 5.47 3.871 6.9L16 24l4.129-2.1C22.452 20.47 24 17.914 24 15c0-4.418-3.582-8-8-8z" fill="#f5c535" opacity=".7"/><circle cx="16" cy="15" r="3.5" fill="#d4a000"/></svg>
+        </div>
+        <h3>Kasih Sayang</h3>
+        <p>Memberikan lingkungan penuh kasih bagi anak-anak yatim, piatu, dan dhuafa agar mereka merasakan kehangatan keluarga meski jauh dari orang tua kandung.</p>
+        <div class="keung-stat"><strong>100+</strong><span>anak binaan aktif</span></div>
+      </div>
+
+      <div class="keung-card reveal reveal-d2">
+        <div class="keung-icon" style="background:#dff3f7">
+          <svg width="32" height="32" fill="none" viewBox="0 0 32 32"><rect x="5" y="6" width="22" height="20" rx="3" fill="#3a9caa" opacity=".2"/><rect x="9" y="10" width="14" height="2" rx="1" fill="#3a9caa"/><rect x="9" y="14" width="10" height="2" rx="1" fill="#3a9caa"/><rect x="9" y="18" width="12" height="2" rx="1" fill="#3a9caa"/><path d="M5 9a3 3 0 013-3h2v20H8a3 3 0 01-3-3V9z" fill="#3a9caa" opacity=".35"/></svg>
+        </div>
+        <h3>Pendidikan</h3>
+        <p>Memastikan setiap anak mendapat akses pendidikan formal berkualitas, bimbingan belajar, dan beasiswa — karena ilmu adalah warisan paling berharga.</p>
+        <div class="keung-stat"><strong>98%</strong><span>tingkat kelulusan binaan</span></div>
+      </div>
+
+      <div class="keung-card reveal reveal-d3">
+        <div class="keung-icon" style="background:#e8f5ee">
+          <svg width="32" height="32" fill="none" viewBox="0 0 32 32"><path d="M16 4L6 9v8c0 5.55 4.27 10.74 10 12 5.73-1.26 10-6.45 10-12V9L16 4z" fill="#4a9e7a" opacity=".25"/><path d="M13 16.5l-3-3 1.41-1.41L13 13.67l6.59-6.59L21 8.5l-8 8z" fill="#4a9e7a"/></svg>
+        </div>
+        <h3>Pemberdayaan</h3>
+        <p>Melatih keterampilan hidup, karakter Islami, dan kemandirian agar para penerima manfaat tumbuh menjadi generasi yang berdaya dan bermanfaat bagi masyarakat.</p>
+        <div class="keung-stat"><strong>5+</strong><span>tahun pengabdian</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════
+     SECTION 3 — PROGRAM & LAYANAN
+══════════════════════════════════════════════ -->
+<section id="program" class="sec-program">
+  <div class="container">
+    <div class="sec-label reveal" style="color:#4a9e7a">Program Kami</div>
+    <h2 class="sec-title reveal">Layanan &amp; Program<br><span class="hl">Yayasan</span></h2>
+    <p class="sec-desc reveal">Rangkaian program yang dirancang untuk menyentuh setiap aspek kehidupan anak binaan — dari kebutuhan dasar hingga pengembangan potensi diri.</p>
+
+    <div class="program-grid">
+
+      <div class="prog-card reveal">
+        <div class="prog-num">01</div>
+        <div class="prog-icon">🕌</div>
+        <h3>Santunan Rutin</h3>
+        <p>Pemberian santunan bulanan berupa kebutuhan pokok, biaya sekolah, dan perlengkapan belajar bagi anak yatim, piatu, dan dhuafa.</p>
+      </div>
+
+      <div class="prog-card reveal reveal-d1">
+        <div class="prog-num">02</div>
+        <div class="prog-icon">📖</div>
+        <h3>Bimbingan Belajar</h3>
+        <p>Program bimbingan belajar gratis oleh tenaga pengajar sukarela untuk mendampingi anak-anak meraih prestasi akademik terbaik mereka.</p>
+      </div>
+
+      <div class="prog-card reveal reveal-d2">
+        <div class="prog-num">03</div>
+        <div class="prog-icon">🤲</div>
+        <h3>Pembinaan Islami</h3>
+        <p>Kegiatan rutin pengajian, hafalan Al-Qur'an, shalat berjamaah, dan pembentukan akhlak mulia sejak dini dalam suasana penuh kasih.</p>
+      </div>
+
+      <div class="prog-card reveal reveal-d3">
+        <div class="prog-num">04</div>
+        <div class="prog-icon">🎓</div>
+        <h3>Beasiswa Pendidikan</h3>
+        <p>Dukungan beasiswa penuh bagi anak-anak berprestasi yang kurang mampu agar tidak ada yang terhenti di tengah jalan karena biaya.</p>
+      </div>
+
+      <div class="prog-card reveal reveal-d1">
+        <div class="prog-num">05</div>
+        <div class="prog-icon">💼</div>
+        <h3>Pelatihan Keterampilan</h3>
+        <p>Workshop dan pelatihan vokasi untuk remaja binaan agar memiliki keahlian praktis dan siap mandiri secara ekonomi di masa depan.</p>
+      </div>
+
+      <div class="prog-card reveal reveal-d2">
+        <div class="prog-num">06</div>
+        <div class="prog-icon">❤️</div>
+        <h3>Acara Sosial &amp; Amal</h3>
+        <p>Penyelenggaraan bakti sosial, santunan massal, dan peringatan hari besar Islam yang mempertemukan donatur dengan anak-anak binaan.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════
+     SECTION 4 — DAMPAK / STATISTIK
+══════════════════════════════════════════════ -->
+<section class="sec-stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item reveal">
+        <div class="stat-num" data-target="100">0</div>
+        <div class="stat-plus">+</div>
+        <p>Anak Binaan Aktif</p>
+      </div>
+      <div class="stat-item reveal reveal-d1">
+        <div class="stat-num" data-target="5">0</div>
+        <div class="stat-plus">+</div>
+        <p>Tahun Pengabdian</p>
+      </div>
+      <div class="stat-item reveal reveal-d2">
+        <div class="stat-num" data-target="200">0</div>
+        <div class="stat-plus">+</div>
+        <p>Donatur Setia</p>
+      </div>
+      <div class="stat-item reveal reveal-d3">
+        <div class="stat-num" data-target="46">0</div>
+        <div class="stat-label">/ 5</div>
+        <p>Rating Google</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════
+     SECTION 5 — ACARA / KEGIATAN TERKINI
+══════════════════════════════════════════════ -->
+<section id="acara" class="sec-acara">
+  <div class="container">
+    <div class="sec-label reveal">Kegiatan</div>
+    <h2 class="sec-title reveal">Acara &amp; Kegiatan<br><span class="hl">Terkini</span></h2>
+    <p class="sec-desc reveal">Ikuti setiap momen bermakna bersama kami — dari santunan rutin hingga acara sosial yang mempererat ukhuwah.</p>
+
+    <div class="acara-grid">
+
+      <article class="acara-card reveal">
+        <div class="acara-img" style="background-image:url('https://kasihibulatansa.my.id/assets/img/gallery/IMG-20260517-WA0155.jpg')">
+          <span class="acara-badge">Mendatang</span>
+        </div>
+        <div class="acara-body">
+          <div class="acara-meta"><span>📅 Juli 2026</span><span>📍 Jakarta Selatan</span></div>
+          <h3>Santunan Anak Yatim &amp; Dhuafa</h3>
+          <p>Kegiatan santunan rutin bulanan bersama para donatur untuk memberikan bantuan langsung kepada anak-anak binaan dan keluarga dhuafa di sekitar yayasan.</p>
+          <a href="https://kasihibulatansa.my.id/" target="_blank" class="acara-link">Selengkapnya →</a>
+        </div>
+      </article>
+
+      <article class="acara-card reveal reveal-d1">
+        <div class="acara-img" style="background-image:url('https://kasihibulatansa.my.id/assets/img/gallery/20250315_101534.jpg')">
+          <span class="acara-badge" style="background:#3a9caa">Berlangsung</span>
+        </div>
+        <div class="acara-body">
+          <div class="acara-meta"><span>📅 Juni 2026</span><span>📍 Petukangan Utara</span></div>
+          <h3>Bimbingan Belajar Intensif Semester Ganjil</h3>
+          <p>Program belajar intensif persiapan ujian semester bagi anak-anak binaan SD dan SMP, dipandu oleh tenaga pengajar sukarela berpengalaman.</p>
+          <a href="https://kasihibulatansa.my.id/" target="_blank" class="acara-link">Selengkapnya →</a>
+        </div>
+      </article>
+
+      <article class="acara-card reveal reveal-d2">
+        <div class="acara-img" style="background-image:url('https://kasihibulatansa.my.id/assets/img/gallery/dff1e06014974438a69a1f8cc44dd493.jpg')">
+          <span class="acara-badge" style="background:#4a9e7a">Selesai</span>
+        </div>
+        <div class="acara-body">
+          <div class="acara-meta"><span>📅 Maret 2026</span><span>📍 The Sultan Hotel</span></div>
+          <h3>Gathering Donatur &amp; Peringatan HUT Yayasan</h3>
+          <p>Acara tahunan yang mempertemukan 100 anak binaan dengan para donatur setia dalam suasana penuh kebersamaan dan syukur di The Sultan Hotel.</p>
+          <a href="https://kasihibulatansa.my.id/" target="_blank" class="acara-link">Selengkapnya →</a>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="acara-cta reveal">
+      <a href="https://kasihibulatansa.my.id/" target="_blank" class="btn-outline-dark">Lihat Semua Kegiatan</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════
+     SECTION 6 — GALERI
+══════════════════════════════════════════════ -->
+<section id="galeri" class="sec-galeri">
+  <div class="container">
+    <div class="sec-label reveal" style="color:#fff; opacity:.7">Galeri</div>
+    <h2 class="sec-title reveal" style="color:#fff">Momen Bersama<br><span style="color:#f5c535">Anak-Anak Kami</span></h2>
+
+    <div class="galeri-grid">
+      <div class="gal-item gal-big reveal" style="background-image:url('https://kasihibulatansa.my.id/assets/img/gallery/IMG-20260517-WA0049.jpg')"></div>
+      <div class="gal-item reveal reveal-d1" style="background-image:url('https://kasihibulatansa.my.id/assets/img/gallery/IMG-20260517-WA0155.jpg')"></div>
+      <div class="gal-item reveal reveal-d2" style="background-image:url('https://kasihibulatansa.my.id/assets/img/gallery/20250315_101534.jpg')"></div>
+      <div class="gal-item reveal reveal-d3" style="background-image:url('https://kasihibulatansa.my.id/assets/img/gallery/dff1e06014974438a69a1f8cc44dd493.jpg')"></div>
+      <div class="gal-item reveal reveal-d1" style="background-image:url('https://kasihibulatansa.my.id/assets/img/gallery/IMG-20260517-WA0049.jpg')"></div>
+    </div>
+
+    <div class="acara-cta reveal">
+      <a href="https://kasihibulatansa.my.id/" target="_blank" class="btn-outline-white">Lihat Galeri Lengkap</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════
+     SECTION 7 — CTA DONASI
+══════════════════════════════════════════════ -->
+<section class="sec-cta-donasi">
+  <div class="container">
+    <div class="cta-donasi-inner reveal">
+      <div class="cta-icon">🤲</div>
+      <h2>Satu Kebaikanmu,<br>Sejuta Harapan untuk Mereka</h2>
+      <p>Donasi Anda — seberapapun — akan mengubah kehidupan seorang anak yatim dan dhuafa. Mari bersama membangun generasi yang lebih baik.</p>
+      <div class="cta-btns">
+        <a href="https://kasihibulatansa.my.id/" target="_blank" class="btn btn-green">Donasi Sekarang</a>
+        <a href="https://wa.me/6285710476992" target="_blank" class="btn btn-wа">💬 Hubungi Kami</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════ -->
+<footer id="kontak">
+  <div class="footer-top">
+    <div class="container footer-grid">
+
+      <!-- Brand -->
+      <div class="footer-brand">
+        <a href="#" class="logo footer-logo">
+          <div class="logo-circle">
+            <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="26,2 30,18 44,10 34,22 50,26 34,30 44,42 30,34 26,50 22,34 8,42 18,30 2,26 18,22 8,10 22,18" fill="url(#starGrad2)"/>
+              <ellipse cx="22" cy="20" rx="4.5" ry="4.5" fill="white" opacity="0.95"/>
+              <path d="M14 40 C14 31 30 31 30 40" fill="white" opacity="0.95"/>
+              <ellipse cx="29" cy="24" rx="3" ry="3" fill="white" opacity="0.9"/>
+              <path d="M23 40 C23 33 35 33 35 40" fill="white" opacity="0.9"/>
+              <defs>
+                <linearGradient id="starGrad2" x1="26" y1="2" x2="26" y2="50" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#2eaa4a"/>
+                  <stop offset="55%" stop-color="#1d8c38"/>
+                  <stop offset="100%" stop-color="#e8d88a"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <div class="logo-text">
+            <strong style="color:#fff">Kasih Ibu</strong>
+            <span style="color:#6bbfc9">Latansa</span>
+          </div>
+        </a>
+        <p>Yayasan Non Panti yang berdedikasi mewujudkan masa depan cerah bagi anak-anak yatim, piatu, dan dhuafa di Jakarta Selatan.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/kasihibulatansa/" target="_blank" aria-label="Instagram">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="https://wa.me/6285710476992" target="_blank" aria-label="WhatsApp">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Links -->
+      <div class="footer-col">
+        <h4>Menu</h4>
+        <ul>
+          <li><a href="#">Beranda</a></li>
+          <li><a href="#keunggulan">Tentang Kami</a></li>
+          <li><a href="#program">Program</a></li>
+          <li><a href="#acara">Acara</a></li>
+          <li><a href="#galeri">Galeri</a></li>
+          <li><a href="#kontak">Kontak</a></li>
+        </ul>
+      </div>
+
+      <!-- Program -->
+      <div class="footer-col">
+        <h4>Program</h4>
+        <ul>
+          <li><a href="#">Santunan Rutin</a></li>
+          <li><a href="#">Bimbingan Belajar</a></li>
+          <li><a href="#">Pembinaan Islami</a></li>
+          <li><a href="#">Beasiswa Pendidikan</a></li>
+          <li><a href="#">Pelatihan Keterampilan</a></li>
+        </ul>
+      </div>
+
+      <!-- Kontak -->
+      <div class="footer-col">
+        <h4>Kontak</h4>
+        <ul class="footer-contact">
+          <li>
+            <span>📍</span>
+            <span>Jl. H. Muchtar Raya No.44, RT.10/RW.1, Petukangan Utara, Kec. Pesanggrahan, Jakarta Selatan</span>
+          </li>
+          <li>
+            <span>📞</span>
+            <a href="tel:+6285710476992">+62 857-1047-6992</a>
+          </li>
+          <li>
+            <span>🌐</span>
+            <a href="https://kasihibulatansa.my.id/" target="_blank">kasihibulatansa.my.id</a>
+          </li>
+          <li>
+            <span>⏰</span>
+            <span>Senin – Jumat, 08.00 – 17.00 WIB</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container">
+      <p>© 2026 Yayasan Kasih Ibu La Tansa. Semua hak dilindungi.</p>
+      <p>Dibuat dengan ❤️ untuk anak-anak Indonesia</p>
+    </div>
+  </div>
+</footer>
+
+
 <script>
 /* Navbar */
 const navbar = document.getElementById('navbar');
@@ -722,6 +1469,48 @@ function makeSlider(sliderEl, dotsEl, slideClass, dotClass) {
 
 makeSlider(document.getElementById('sliderD'), document.getElementById('dotsD'), 'slide',     'dot');
 makeSlider(document.getElementById('sliderM'), document.getElementById('dotsM'), 'slide-mob', 'dot-mob');
+
+/* ── Scroll Reveal ── */
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+/* ── Counter Animation ── */
+function animateCounter(el, target, duration = 1600) {
+  let start = null;
+  const isDecimal = target < 10;
+  const step = (ts) => {
+    if (!start) start = ts;
+    const progress = Math.min((ts - start) / duration, 1);
+    // ease-out-quad
+    const eased = 1 - (1 - progress) * (1 - progress);
+    const val = isDecimal ? (eased * target).toFixed(1) : Math.floor(eased * target);
+    el.textContent = val;
+    if (progress < 1) requestAnimationFrame(step);
+    else el.textContent = isDecimal ? target.toFixed(1) : target;
+  };
+  requestAnimationFrame(step);
+}
+
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const target = parseFloat(el.dataset.target);
+      animateCounter(el, target);
+      counterObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.4 });
+
+document.querySelectorAll('.stat-num[data-target]').forEach(el => counterObserver.observe(el));
 </script>
 </body>
 </html>
